@@ -8,7 +8,8 @@
 </head>
 <body>
 <h1>Login here...</h1>
-<form action="login" method="post">
+<a href="showRegistration">Click me to create an account</a>
+<form action="verifylogin" method="post">
 		<pre>
 			Email Id<input type="text" name="email" />
 			Password<input type="password" name="password" />

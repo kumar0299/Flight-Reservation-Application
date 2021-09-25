@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h2>create new Account</h2>
+	<a href="login">Click me to login</a>
 	<form action="saveReg" method="post">
 		<pre>
 			First Name<input type="text" name="firstName" />
