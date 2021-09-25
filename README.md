@@ -1,2 +1,2 @@
 # Flight-Reservation-Application
-A Flight reservation application
+It is a web based Flight reservation application
