@@ -2,8 +2,10 @@ package com.FlightReservation.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.FlightReservation.Entity.User;
 import com.FlightReservation.Repository.UserRepository;
@@ -18,7 +20,7 @@ public class UserController {
 	public String showLoginPage() {
 		return "login/login";
 	}
-	
+
 	@RequestMapping("/showRegistration")
 	public String showReg() {
 		return "login/showRegistration";
@@ -29,10 +31,18 @@ public class UserController {
 		userRepo.save(user);
 		return "login/login";
 	}
-	
+
 	@RequestMapping("/verifylogin")
-	public String verifyLogin() {
-		
-		return "login/findFlights";
+	public String verifyLogin(@RequestParam("email") String emailid, @RequestParam("password") String password,
+			ModelMap modelmap) {
+		User user = userRepo.findByEmail(emailid);
+		System.out.println(user.getEmail());
+		System.out.println(user.getPassword());
+		if (user.getEmail().equals(emailid) && user.getPassword().equals(password)) {
+			return "login/findFlights";
+		} else {
+			modelmap.addAttribute("error", "Entered emailId or Password is incorrect");
+			return "login/login";
+		}
 	}
 }
