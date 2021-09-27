@@ -36,13 +36,15 @@ public class UserController {
 	public String verifyLogin(@RequestParam("email") String emailid, @RequestParam("password") String password,
 			ModelMap modelmap) {
 		User user = userRepo.findByEmail(emailid);
-		System.out.println(user.getEmail());
-		System.out.println(user.getPassword());
-		if (user.getEmail().equals(emailid) && user.getPassword().equals(password)) {
-			return "login/findFlights";
-		} else {
-			modelmap.addAttribute("error", "Entered emailId or Password is incorrect");
-			return "login/login";
+		if (user != null) {
+			if (user.getEmail().equals(emailid) && user.getPassword().equals(password)) {
+				return "login/findFlights";
+			} else {
+				modelmap.addAttribute("error", "Entered emailId or Password is incorrect");
+				return "login/login";
+			}
 		}
+		modelmap.addAttribute("error", "Entered emailId or Password is incorrect");
+		return "login/login";
 	}
 }
