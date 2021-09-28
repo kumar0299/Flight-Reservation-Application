@@ -2,6 +2,7 @@ package com.FlightReservation.Controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,5 +26,17 @@ public class FlightController {
 		System.out.println(findFlight);
 		ModelMap.addAttribute("findFlight", findFlight);
 		return "login/displayFlights";
+	}
+	
+	@RequestMapping("/ShowCompleteReservation")
+	public String ShowCompleteReservation(@RequestParam("flightId") Integer id, ModelMap ModelMap) {
+		Optional<Flight> findById = flightRepo.findById(id);
+		Flight flight = findById.get();
+		System.out.println(flight.getId());
+		System.out.println(flight.getDepartureCity());
+		System.out.println(flight.getArrivalCity());
+		System.out.println(flight.getFlightNumber());
+		ModelMap.addAttribute("flight", flight);
+		return "showReservation";
 	}
 }
