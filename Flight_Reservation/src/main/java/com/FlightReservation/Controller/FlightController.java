@@ -37,6 +37,6 @@ public class FlightController {
 		System.out.println(flight.getArrivalCity());
 		System.out.println(flight.getFlightNumber());
 		ModelMap.addAttribute("flight", flight);
-		return "showReservation";
+		return "login/showReservation";
 	}
 }
