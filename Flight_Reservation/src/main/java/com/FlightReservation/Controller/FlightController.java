@@ -23,7 +23,6 @@ public class FlightController {
 	@RequestMapping("/findFlights")
 	public String findFlights(@RequestParam("from") String from, @RequestParam("to") String to, @RequestParam("Departuredate") @DateTimeFormat(pattern = "MM-dd-yyyy") Date departureDate,ModelMap ModelMap) {
 		List<Flight> findFlight = flightRepo.findFlight(from, to, departureDate);
-		System.out.println(findFlight);
 		ModelMap.addAttribute("findFlight", findFlight);
 		return "login/displayFlights";
 	}
@@ -32,10 +31,6 @@ public class FlightController {
 	public String ShowCompleteReservation(@RequestParam("flightId") Integer id, ModelMap ModelMap) {
 		Optional<Flight> findById = flightRepo.findById(id);
 		Flight flight = findById.get();
-		System.out.println(flight.getId());
-		System.out.println(flight.getDepartureCity());
-		System.out.println(flight.getArrivalCity());
-		System.out.println(flight.getFlightNumber());
 		ModelMap.addAttribute("flight", flight);
 		return "login/showReservation";
 	}

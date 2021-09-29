@@ -16,7 +16,7 @@
 	</br> Estimated Departure Time: ${flight.estimatedDepartureTime}
 	</br>
 	<h2>Enter Passenger Details</h2>
-	<form action="" method="post">
+	<form action="completeReservation" method="post">
 		<pre>
 			First Name<input type="text" name="firstName" />
 			Last Name<input type="text" name="lastName" />
@@ -24,6 +24,13 @@
 			Email Id<input type="text" name="email" />
 			Phone<input type="text" name="phone" />
 			<input type="hidden" name="flightId" value = "${flight.id}"/>
+			
+			
+			<h2>Enter the card details</h2>
+			Card Number<input type="text" name="cardNumber" /><br/>
+			CVV<input type="text" name="cvv" /><br/>
+			Expiry Date<input type="text" name="expiryDate" /><br/>
+			Amount<input type="text" name="amount" /><br/>
 			<input type="submit" value="complete Reservation" />
 		</pre>
 	</form>
