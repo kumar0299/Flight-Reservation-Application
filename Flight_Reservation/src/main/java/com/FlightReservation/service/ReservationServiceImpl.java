@@ -11,6 +11,7 @@ import com.FlightReservation.Entity.Reservation;
 import com.FlightReservation.Repository.FlightRepository;
 import com.FlightReservation.Repository.PassengerRepository;
 import com.FlightReservation.Repository.ReservationRepository;
+import com.FlightReservation.Utilities.PdfGenerator;
 import com.FlightReservation.dto.ReservationRequest;
 
 
@@ -28,6 +29,9 @@ public class ReservationServiceImpl implements ReservationService {
 	
 	@Override
 	public Reservation bookFlight(ReservationRequest reservation) {
+		
+		String filePath = "C:/Users/Manjeet Kumar/git/Flight-Reservation-Application/Flight_Reservation/src/ticket/";
+		
 		Passenger passenger = new Passenger();
 		passenger.setFirstName(reservation.getFirstName());
 		passenger.setLastName(reservation.getLastName());
@@ -47,6 +51,11 @@ public class ReservationServiceImpl implements ReservationService {
 		reserve.setCheckedIn(false);
 		reserve.setNumberOfBags(0);
 		reservationRepo.save(reserve);
+		
+		
+		PdfGenerator pdf = new PdfGenerator();
+		pdf.generatePdf(filePath, name, emailId, phone, operatingAirlines, departureDate, departureCity, arrivalCity);
+		
 		
 		return reserve;
 	}
