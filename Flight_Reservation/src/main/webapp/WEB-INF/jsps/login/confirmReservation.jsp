@@ -9,7 +9,7 @@
 <body>
 	<h2>Your flight is booked</h2>
 	
-	.
+	
 	
 	${reservationId}
 </body>

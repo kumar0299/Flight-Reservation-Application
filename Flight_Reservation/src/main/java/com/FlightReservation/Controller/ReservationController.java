@@ -18,7 +18,7 @@ public class ReservationController {
 	@RequestMapping("/completeReservation")
 	public String completeReservation(ReservationRequest reservation, ModelMap ModelMap) {
 		Reservation reservationId = reservationService.bookFlight(reservation);
-		ModelMap.addAttribute("reservationId", reservationId);
+		ModelMap.addAttribute("reservationId", reservationId.getId());
 		return "login/confirmReservation";
 	}
 }
