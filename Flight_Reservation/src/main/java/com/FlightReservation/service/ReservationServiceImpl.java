@@ -56,7 +56,7 @@ public class ReservationServiceImpl implements ReservationService {
 
 		PdfGenerator pdf = new PdfGenerator();
 		pdf.generatePdf(filePath + reserve.getId() + ".pdf", reservation.getFirstName(), reservation.getEmail(),
-				reservation.getPhone(), flight.getOperatingAirlines(), flight.getDateOfDeparture(),
+				reservation.getPhone(), flight.getOperatingAirlines(), flight.getEstimatedDepartureTime(),
 				flight.getDepartureCity(), flight.getArrivalCity());
 		
 		
