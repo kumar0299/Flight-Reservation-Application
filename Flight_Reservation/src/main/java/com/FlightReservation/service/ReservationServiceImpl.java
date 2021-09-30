@@ -30,7 +30,7 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public Reservation bookFlight(ReservationRequest reservation) {
 		
-		String filePath = "C:/Users/Manjeet Kumar/git/Flight-Reservation-Application/Flight_Reservation/src/ticket/";
+		String filePath = "C:/Users/Manjeet Kumar/git/Flight-Reservation-Application/Flight_Reservation/src/ticket/booking";
 		
 		Passenger passenger = new Passenger();
 		passenger.setFirstName(reservation.getFirstName());
@@ -54,7 +54,8 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		
 		PdfGenerator pdf = new PdfGenerator();
-		pdf.generatePdf(filePath, name, emailId, phone, operatingAirlines, departureDate, departureCity, arrivalCity);
+		pdf.generatePdf(filePath+reserve.getId()+".pdf", reservation.getFirstName(), reservation.getEmail(), reservation.getPhone(), flight.getOperatingAirlines(), flight.getDateOfDeparture(), flight.getDepartureCity(), flight.getArrivalCity());
+		
 		
 		
 		return reserve;

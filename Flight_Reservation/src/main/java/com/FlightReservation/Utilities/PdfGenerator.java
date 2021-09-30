@@ -41,8 +41,8 @@ public class PdfGenerator {
 		document.addTitle("My first PDF");
 		document.addSubject("Using iText");
 		document.addKeywords("Java, PDF, iText");
-		document.addAuthor("Lars Vogel");
-		document.addCreator("Lars Vogel");
+		document.addAuthor("Manjeet Kumar");
+		document.addCreator("Lars Vogel from vogella.com");
 	}
 
 	private static void addTitleAndTable(Document document, String name, String emailId, String phone,
