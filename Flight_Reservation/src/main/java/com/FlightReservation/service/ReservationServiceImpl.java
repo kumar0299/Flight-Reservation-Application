@@ -11,6 +11,7 @@ import com.FlightReservation.Entity.Reservation;
 import com.FlightReservation.Repository.FlightRepository;
 import com.FlightReservation.Repository.PassengerRepository;
 import com.FlightReservation.Repository.ReservationRepository;
+import com.FlightReservation.Utilities.EmailSender;
 import com.FlightReservation.Utilities.PdfGenerator;
 import com.FlightReservation.dto.ReservationRequest;
 
@@ -25,6 +26,9 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
 	private ReservationRepository reservationRepo;
+	
+	@Autowired
+	private EmailSender email;
 
 	@Override
 	public Reservation bookFlight(ReservationRequest reservation) {
@@ -54,7 +58,11 @@ public class ReservationServiceImpl implements ReservationService {
 		pdf.generatePdf(filePath + reserve.getId() + ".pdf", reservation.getFirstName(), reservation.getEmail(),
 				reservation.getPhone(), flight.getOperatingAirlines(), flight.getDateOfDeparture(),
 				flight.getDepartureCity(), flight.getArrivalCity());
-
+		
+		
+		String attachment = filePath + reserve.getId()+".pdf";
+		email.sendEmail(reservation.getEmail(),attachment);
+		
 		return reserve;
 	}
 
