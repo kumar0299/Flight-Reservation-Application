@@ -63,12 +63,12 @@ public class PdfGenerator {
 		document.add(Chunk.NEWLINE);
 
 		PdfPTable table = new PdfPTable(2);
-
+		table.setWidthPercentage(100);
 		// t.setBorderColor(BaseColor.GRAY);
 		// t.setPadding(4);
 		// t.setSpacing(4);
 		// t.setBorderWidth(1);
-
+		table.setSpacingAfter(10f);
 		PdfPCell c1 = new PdfPCell(new Phrase("Passenger Detail"));
 		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		c1.setColspan(2);
@@ -84,12 +84,12 @@ public class PdfGenerator {
 		document.add(table);
 
 		PdfPTable table1 = new PdfPTable(2);
-		table1.setWidthPercentage(100);
+		table.setWidthPercentage(100);
 		// t.setBorderColor(BaseColor.GRAY);
 		// t.setPadding(4);
 		// t.setSpacing(4);
 		// t.setBorderWidth(1);
-
+		table.setSpacingAfter(10f);
 		PdfPCell c2 = new PdfPCell(new Phrase("Flight Detail"));
 		c2.setHorizontalAlignment(Element.ALIGN_CENTER);
 		c2.setColspan(2);

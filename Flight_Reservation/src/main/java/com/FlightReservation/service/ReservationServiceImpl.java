@@ -14,24 +14,23 @@ import com.FlightReservation.Repository.ReservationRepository;
 import com.FlightReservation.Utilities.PdfGenerator;
 import com.FlightReservation.dto.ReservationRequest;
 
-
 @Service
 public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
 	private PassengerRepository passengerRepo;
-	
+
 	@Autowired
 	private FlightRepository flightRepo;
-	
+
 	@Autowired
 	private ReservationRepository reservationRepo;
-	
+
 	@Override
 	public Reservation bookFlight(ReservationRequest reservation) {
-		
+
 		String filePath = "C:/Users/Manjeet Kumar/git/Flight-Reservation-Application/Flight_Reservation/src/ticket/booking";
-		
+
 		Passenger passenger = new Passenger();
 		passenger.setFirstName(reservation.getFirstName());
 		passenger.setLastName(reservation.getLastName());
@@ -39,25 +38,23 @@ public class ReservationServiceImpl implements ReservationService {
 		passenger.setEmail(reservation.getEmail());
 		passenger.setPhone(reservation.getPhone());
 		passengerRepo.save(passenger);
-		
-		
+
 		int flightId = reservation.getFlightId();
 		Optional<Flight> findById = flightRepo.findById(flightId);
 		Flight flight = findById.get();
-		
+
 		Reservation reserve = new Reservation();
 		reserve.setFlight(flight);
 		reserve.setPassenger(passenger);
 		reserve.setCheckedIn(false);
 		reserve.setNumberOfBags(0);
 		reservationRepo.save(reserve);
-		
-		
+
 		PdfGenerator pdf = new PdfGenerator();
-		pdf.generatePdf(filePath+reserve.getId()+".pdf", reservation.getFirstName(), reservation.getEmail(), reservation.getPhone(), flight.getOperatingAirlines(), flight.getDateOfDeparture(), flight.getDepartureCity(), flight.getArrivalCity());
-		
-		
-		
+		pdf.generatePdf(filePath + reserve.getId() + ".pdf", reservation.getFirstName(), reservation.getEmail(),
+				reservation.getPhone(), flight.getOperatingAirlines(), flight.getDateOfDeparture(),
+				flight.getDepartureCity(), flight.getArrivalCity());
+
 		return reserve;
 	}
 
