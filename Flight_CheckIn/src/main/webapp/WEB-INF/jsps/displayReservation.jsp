@@ -18,10 +18,10 @@
 	</br> Date Of Departure : ${reservation.getFlight().getDateOfDeparture()}
 	</br>
 	<h2>Update No. of bags and Status</h2>
-	<form action="" method="post">
+	<form action="CheckInToconfirm" method="post">
 		<pre>
+		Reservation ID<input type="text" name="id" value="${reservation.getId()}" readonly />
 		Number of bags<input type="text" name="numberOfBags" />
-		Checked In Status<input type="text" name="checkedIn" />
 		<input type="submit" value="confirm" />
 		</pre>
 	</form>
