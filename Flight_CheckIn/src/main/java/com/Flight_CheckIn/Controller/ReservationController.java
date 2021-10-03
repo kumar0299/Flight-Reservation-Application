@@ -2,6 +2,7 @@ package com.Flight_CheckIn.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,15 +21,10 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("/proceedCheckIn")
-	public String proceedCheckIn(@RequestParam("id") int id) {
+	public String proceedCheckIn(@RequestParam("id") int id, ModelMap ModelMap) {
 		Reservation reservation = restClient.findReservation(id);
-		System.out.println(reservation.getId());
-		System.out.println(reservation.getNumberOfBags());
-		System.out.println(reservation.isCheckedIn());
-		System.out.println(reservation.getPassenger().getFirstName());
-		System.out.println(reservation.getPassenger().getMiddleName());
-		System.out.println(reservation.getPassenger().getLastName());
-		return "";
+		ModelMap.addAttribute("reservation", reservation);
+		return "displayReservation";
 	}
 
 }
