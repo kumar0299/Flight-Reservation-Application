@@ -8,9 +8,9 @@
 </head>
 <body>
 	<h2>Your flight is booked</h2>
-	
-	
-	
-	${reservationId}
+
+
+
+	Your booking is confirmed & your booking id is : ${reservationId}
 </body>
 </html>
